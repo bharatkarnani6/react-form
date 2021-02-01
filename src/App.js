@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import FormData from './Pages/FormData/FormData';
+import { BrowserRouter } from "react-router-dom";
+import Route from "./Router/Routes";
 
 function App() {
   return (
-    <div className="">
-      <FormData />
-    </div>
+    <BrowserRouter>
+      <Route />
+    </BrowserRouter>
   );
 }
 

@@ -1,4 +1,5 @@
 import react, { useState } from 'react';
+import Details from '../Details/Details';
 
 export default function FormData() {
     const [show, setshow] = useState(false);
@@ -78,8 +79,12 @@ export default function FormData() {
     const onSubmits = (event) => {
         event.preventDefault();
         setshow(true)
-        console.log(data);
-
+        localStorage.setItem('Name', JSON.stringify(data.full_name));
+        localStorage.setItem('Father Name', JSON.stringify(data.father_name));
+        localStorage.setItem('Mother Name', JSON.stringify(data.mother_name));
+        localStorage.setItem('Mobile Number', JSON.stringify(data.mobile_number));
+        localStorage.setItem('Category', JSON.stringify(data.category));
+        localStorage.setItem('Qualification', JSON.stringify(data.qualification));
     }
     return (
         <div className="container-fluid mt-5" style={{ width: '50%', margin: "0 auto" }} >
@@ -128,11 +133,11 @@ export default function FormData() {
                 <div className="mb-3">
                     <label className="form-label">Category</label>
                     <select
-                        class="form-select"
+                        className="form-select"
                         name="category"
                         onChange={InputEvent}
                         value={data.category}>
-                        <option selected>Open this select menu</option>
+                        <option defaultValue>Open this select menu</option>
                         <option value="General">General</option>
                         <option value="OBC">OBC</option>
                         <option value="SC/ST">SC/ST</option>
@@ -142,45 +147,16 @@ export default function FormData() {
                     <label className="form-label">Highest Qualification</label><br></br>
                     <div className="form-check form-check-inline">
                         <input className="form-check-input" type="radio" value='12th' name="qualification" onChange={InputEvent} />
-                        <label className="form-check-label" for="inlineRadio1">12th </label>
+                        <label className="form-check-label">12th </label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input className="form-check-input" type="radio" value="diploma" name="qualification" onChange={InputEvent} />
-                        <label className="form-check-label" for="inlineRadio2">Diploma</label>
+                        <label className="form-check-label" >Diploma</label>
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
 
-            {show && (<div className="card mt-5 mb-5" style={{ width: '18rem' }}>
-                <div className="card-body">
-                    <h5 class="card-title text-center">Details</h5>
-                    <div className="row">
-                        <div className="col">Full Name</div>
-                        <div className="col">{data.full_name}</div>
-                    </div>
-                    <div className="row">
-                        <div className="col">Father Name</div>
-                        <div className="col">{data.father_name}</div>
-                    </div>
-                    <div className="row">
-                        <div className="col">Mother Name</div>
-                        <div className="col">{data.mother_name}</div>
-                    </div>
-                    <div className="row">
-                        <div className="col">Mobile Number</div>
-                        <div className="col">{data.mobile_number}</div>
-                    </div>
-                    <div className="row">
-                        <div className="col">Category</div>
-                        <div className="col">{data.category}</div>
-                    </div>
-                    <div className="row">
-                        <div className="col">Qualification</div>
-                        <div className="col">{data.qualification}</div>
-                    </div>
-                </div>
-            </div>)}
         </div>
     );
 }
