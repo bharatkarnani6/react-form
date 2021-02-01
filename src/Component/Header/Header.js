@@ -5,8 +5,10 @@ export default function Header() {
     const [title, settitle] = useState('Admin');
     let history2 = useHistory();
     useEffect(() => {
-        if (localStorage.length != 0) {
+        if (localStorage.getItem('Profile Name')) {
             settitle(localStorage.getItem('Profile Name').replace(/['"]+/g, ''));
+        } else {
+            settitle('Admin');
         }
 
     }, [])

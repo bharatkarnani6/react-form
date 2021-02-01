@@ -3,6 +3,7 @@ import Signup from '../Signup/Signup'
 import { Modal, Button } from 'react-bootstrap'
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import SecuredROutes from '../../Router/SecuredRoutes';
 
 export default function Login() {
     let history = useHistory();
@@ -18,6 +19,7 @@ export default function Login() {
     const onSubmit = (data) => {
         if (data.email === 'admin@gmail.com' && data.password === '123') {
             console.log("success");
+            localStorage.setItem('login', true);
             history.push('/dashboard')
         } else {
             seterror('Email or passowrd wrong')
